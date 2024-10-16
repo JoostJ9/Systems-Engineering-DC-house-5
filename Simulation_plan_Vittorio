@@ -1,0 +1,50 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+growth_factor = 3.5 #due to a fully DC house with lots of consumption-requiring appliances and functions (e.g. EV charging points)
+
+electricity = growth_factor*np.array([345, 348, 402, 430, 495, 630, 555, 460, 450, 460, 402, 498])
+
+#production of energy in kWh during 1 month by 1 solar panel 
+number_solar_panels = 30 #(number of panels required per apartment). A process of tuning for this parameter is certainly required
+#about 1.7 square meter per solar panel means that 50 square meters are required for a single apartment with a total space (or square meters) required of 50*60=3000 square meters on the roof
+solar = number_solar_panels*np.array([62, 60, 59, 58, 57, 55, 56, 56, 58, 59, 60, 61])
+
+months = np.arange(1, 13)
+
+#fase di accumulo di energia nei mesi in cui c'è un eccesso di produzione (considerazione fatte per coefficiente moltiplicativo pari a 3.5)
+excess_Jan = 650
+excess_Feb = 600
+excess_March = 360
+excess_April = 230
+excess_Sep = 160
+excess_Oct = 160
+excess_Nov = 390
+excess_Dec = 80
+
+somma = excess_Jan + excess_Feb + excess_March + excess_April + excess_Sep + excess_Oct + excess_Nov + excess_Dec
+
+solar_with_excess_energy_supply = np.array([solar[0], solar[1], solar[2], solar[3], solar[4], solar[5]+excess_Jan, solar[6]+excess_Feb, solar[7], solar[8], solar[9], solar[10], solar[11]])
+
+#second iteration requires to cut the number of solar panels per apartment from 30 to 20 in order to save enough space and set the required space to approx. 2000 m2 in tot
+
+
+
+
+
+# Creazione del grafico
+plt.figure(figsize=(10, 6))
+plt.plot(months, electricity, 'm-s', label='Average electricity consumption', linewidth=2)
+plt.plot(months, solar_with_excess_energy_supply, 'g--s', label='Solar panels + stored energy', linewidth=2)
+plt.plot(months, solar, 'y--o', label='Solar panels only', linewidth=2)
+
+# Dettagli grafico
+plt.title('Confronto del Consumo Energetico Mensile: Diversi Tipi di Risorse')
+plt.xlabel('Jan-Dec')
+plt.ylabel('Consumo di Energia (kWh)')
+plt.xticks(months)
+plt.grid(True)
+plt.legend()
+
+# Mostra il grafico
+plt.show()
