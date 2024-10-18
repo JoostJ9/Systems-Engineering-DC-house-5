@@ -27,9 +27,9 @@ def CalculateSolar():
     # Create a PV system with proper module parameters
     # You can adjust these values according to specific PV module data
     module_parameters = {
-        'pdc0': 4000,          # Nominal power at STC in W
+        'pdc0': 250,          # Nominal power at STC in W
         'gamma_pdc': -0.004,  # Temperature coefficient (%/°C)
-        'alpha': 0.003,       # Module temperature coefficient (K^-1)
+        'alpha': 0.000,       # Module temperature coefficient (K^-1)
         'beta': 0.0,          # Voltage temperature coefficient (V/K)
     }
 
