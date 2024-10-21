@@ -1,24 +1,10 @@
 import pandas as pd
 from windpowerlib import WindTurbine, ModelChain
-from windpowerlib import data as wt
 from matplotlib import pyplot as plt
 import numpy as np
 
 def calculatewind():
     """Function that returns the average wind turbine output using windpowerlib"""
-    
-    #Define a custom power curve for the Bergey Excel 1
-    power_curve_data = {
-    0: 0,    # Wind speed 0 m/s -> Power output 0 kW
-    2.5: 0,  # Wind speed 2.5 m/s -> Power output 0 kW (cut-in speed)
-    5: 0.25, # Wind speed 5 m/s -> Power output 0.25 kW
-    7: 0.5,  # Wind speed 7 m/s -> Power output 0.5 kW
-    9: 0.75, # Wind speed 9 m/s -> Power output 0.75 kW
-    11: 1,   # Wind speed 11 m/s -> Power output 1 kW (rated speed)
-    12: 1,   # Wind speed 12 m/s -> Power output 1 kW
-    15: 0.8, # Wind speed 15 m/s -> Power output 0.8 kW
-    20: 0,   # Wind speed 20 m/s -> Power output 0 kW (cut-out speed)
-    }
 
     turbine_data = {
     'turbine_type': 'Bergey Excel 1',

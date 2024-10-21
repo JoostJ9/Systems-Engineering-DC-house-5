@@ -49,7 +49,10 @@ def calculatesolar():
     #Averaging the days in the month to 30 for simplicity. 
     solar_output_kwh = solar_output_kilowatt * 30 * 24
 
-    return solar_output_kwh
+    # Create a Pandas Series to store the result and format it like the example
+    solar_output_series = pd.Series(solar_output_kwh, index=time_index)
+
+    return solar_output_series
     # # Calculate the solar output using pvwatts_dc()
     # solar_pannel_output = solar_panel.pvwatts_dc(solar_irradiance, temp_cell)
 
