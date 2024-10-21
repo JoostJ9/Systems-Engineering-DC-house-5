@@ -29,9 +29,8 @@ def calculatewind():
     'rated_wind_speed': 11.0,       # Rated wind speed in m/s
     'cut_out_wind_speed': 20.0,     # Cut-out wind speed in m/s
     'power_curve': pd.DataFrame(
-            data={'value': [p * 1000 for p in [
-                      0, 0, 250, 500, 750, 1000, 1000, 800, 0]],  # in W
-                  'wind_speed': [0.0, 2,5, 5.0, 7, 9, 11, 12, 15, 20]})  # in m/s
+            data={'value': [0, 0, 250, 500, 750, 1000, 1000, 800, 0],  # in W
+                  'wind_speed': [0.0, 2.5, 5.0, 7, 9, 11, 12, 15, 20]})  # in m/s
     }
    
     # Instantiate a WindTurbine object
@@ -90,8 +89,3 @@ plt.title("Wind Turbine Output Simulation")
 plt.legend()
 plt.grid(True)
 plt.show()
-
-df = wt.get_turbine_types(print_out=True)
-
-# find all Enercons
-print(df[df["manufacturer"].str.contains("Enercon")])

@@ -3,7 +3,7 @@ import pvlib
 import numpy as np
 import matplotlib.pyplot as plt
 
-def CalculateSolar():
+def calculatesolar():
     """Function that returns the average solar output in Perth Australia"""
 
     #Average temperature in Perth Australia, for source see sources.txt
@@ -55,7 +55,7 @@ def CalculateSolar():
 
     # return solar_pannel_output
 
-solar_output = CalculateSolar()
+solar_output = calculatesolar()
 
 # Display the solar output for each month
 print(solar_output)
