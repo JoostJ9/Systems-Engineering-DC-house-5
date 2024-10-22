@@ -40,9 +40,9 @@ class Battery:
 battery = Battery(capacity_kwh=10, efficiency=0.95)
 battery_state_of_charge = []  # Keep track of the state of charge
 
-solar_output = 60*calculatesolar()
+solar_output = 60*8*calculatesolar()
 wind_output = calculatewind()
-tidal_output = calculatetidal()
+tidal_output = 5*calculatetidal()
 
 # Initialize variables
 net_power_flow = []
