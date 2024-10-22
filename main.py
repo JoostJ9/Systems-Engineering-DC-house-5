@@ -7,6 +7,11 @@ from solar_panel import calculatesolar
 from wind_turbine import calculatewind
 from tidal_power import calculatetidal
 
+apartments = 60
+solar_panels_per_household = 12
+tidal_power_plants = 1
+wind_turbines = 1
+
 # Define the custom battery class from above (SimpleBattery)
 class Battery:
     """Class to replicate the behaviour of a battery"""
@@ -40,9 +45,21 @@ class Battery:
 battery = Battery(capacity_kwh=10, efficiency=0.95)
 battery_state_of_charge = []  # Keep track of the state of charge
 
-solar_output = 60*8*calculatesolar()
-wind_output = calculatewind()
-tidal_output = 5*calculatetidal()
+solar_output = apartments * solar_panels_per_household * calculatesolar()
+wind_output = wind_turbines * calculatewind()
+tidal_output = tidal_power_plants * calculatetidal()
+
+household_load = np.array([340, 350, 405, 430, 495, 630,
+                            510, 460, 450, 460, 402, 498]) * apartments * 1.25 #times 1.25 for the fact that every house has a EV.
+
+# Create a time index for 1 year with monthly intervals
+time_index = pd.date_range(start='2024-01-01', end='2024-12-01', freq='MS')
+
+household_load = pd.Series(data = household_load, index = time_index)
+
+tidal_solar = np.array(solar_output) + np.array(tidal_output)
+
+tidal_solar = pd.Series(data = tidal_solar, index = time_index)
 
 # Initialize variables
 net_power_flow = []
@@ -82,9 +99,11 @@ battery_soc = battery.capacity_kwh
 
 # Plotting the results
 plt.figure(figsize=(12, 6))
-plt.plot(solar_output, label="Solar Output (kW)")
-plt.plot(wind_output, label="Wind Output (kW)")
-plt.plot(tidal_output, label="Tidal Output (kW)")
+plt.plot(solar_output, label="Solar Output (kWh)")
+plt.plot(wind_output, label="Wind Output (kWh)")
+plt.plot(tidal_output, label="Tidal Output (kWh)")
+plt.plot(household_load, label = "Household load (kWh)")
+plt.plot(tidal_solar, label = "Solar + tidal(kWh)")
 # plt.plot(house_consumption, label="House Consumption (kW)")
 # plt.plot(time_index, net_power_flow_series, label="Net Power Flow (kW)")
 # plt.plot(time_index, battery_state_of_charge_series, label="Battery SOC (kWh)")
