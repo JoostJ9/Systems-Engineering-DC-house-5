@@ -1,3 +1,12 @@
+#
+growth_factor = 2.5 #due to a fully DC house with lots of consumption-requiring appliances and functions (e.g. EV charging points)
+electricity = 60*growth_factor*np.array([345, 348, 402, 430, 495, 630, 555, 460, 450, 460, 402, 498])
+
+
+
+
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
