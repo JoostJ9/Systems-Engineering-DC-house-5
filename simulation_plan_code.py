@@ -14,10 +14,6 @@ cost_per_tidal_plant = 2490000  # Cost per tidal plant
 battery_capacity_per_unit = 10  # kWh per battery unit (for cost calculation if needed)
 cost_per_battery = 500  # Assuming the cost of one battery is $500
 
-# Arrays for energy produced by one solar panel, one wind turbine, and one tidal plant per month
-# energy_per_solar_panel = np.array([61.101, 54.195, 44.24, 32.439, 24.164, 20.235, 21.631, 28.35, 36.918, 48.646, 57.084, 63.325])  # kWh per solar panel
-# energy_per_wind_turbine = np.array([2200, 2500, 2700, 2600, 2500, 2300, 2200, 2400, 2600, 2800, 2900, 2500])  # kWh per wind turbine
-# energy_per_tidal_plant = 250000  # kWh per tidal plant - considered constant throughout the year
 energy_per_solar_panel = np.array(solar_output)
 energy_per_wind_turbine = np.array(wind_output)
 energy_per_tidal_plant = np.array(tidal_output)
