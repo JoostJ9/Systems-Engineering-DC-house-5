@@ -5,7 +5,7 @@ def calculatetidal():
     """Calculate the average tidal power per month"""
     # Create a time index for 1 year with monthly intervals
     time_index = pd.date_range(start='2024-01-01', end='2024-12-01', freq='MS')
-    tidal_power_kwh = [40*24*30] * 12  # Constant roughness length for each month
+    tidal_power_kwh = [1085000*24*30] * 12  # Constant roughness length for each month
     tidal_power = pd.Series(tidal_power_kwh, time_index)
     return tidal_power
 

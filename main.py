@@ -10,7 +10,7 @@ import datetime
 
 apartments = 60
 solar_panels = 800
-tidal_power_plants = 0
+tidal_power_plants = 1
 wind_turbines = 15
 
 # Define the custom battery class from above (SimpleBattery)
@@ -100,11 +100,11 @@ battery_soc = battery.capacity_kwh
 
 # Plotting the results
 plt.figure(figsize=(12, 6))
-plt.plot(solar_output, label="Solar output (kWh)")
-plt.plot(wind_output, label="Wind output (kWh)")
-plt.plot(tidal_output, label="Tidal output (kWh)")
-plt.plot(household_load, label = "Household load (kWh)")
-plt.plot(total_power_output, label = "Total power output (kWh)")
+plt.plot(solar_output, label="Solar output")
+plt.plot(wind_output, label="Wind output")
+plt.plot(tidal_output, label="Tidal output")
+plt.plot(household_load, label = "Household load")
+plt.plot(total_power_output, label = "Total power output")
 # plt.plot(house_consumption, label="House Consumption (kW)")
 # plt.plot(time_index, net_power_flow_series, label="Net Power Flow (kW)")
 # plt.plot(time_index, battery_state_of_charge_series, label="Battery SOC (kWh)")
