@@ -6,11 +6,12 @@ import numpy as np
 from solar_panel import calculatesolar
 from wind_turbine import calculatewind
 from tidal_power import calculatetidal
+import datetime
 
 apartments = 60
-solar_panels_per_household = 12
-tidal_power_plants = 1
-wind_turbines = 1
+solar_panels = 800
+tidal_power_plants = 0
+wind_turbines = 15
 
 # Define the custom battery class from above (SimpleBattery)
 class Battery:
@@ -45,7 +46,7 @@ class Battery:
 battery = Battery(capacity_kwh=10, efficiency=0.95)
 battery_state_of_charge = []  # Keep track of the state of charge
 
-solar_output = apartments * solar_panels_per_household * calculatesolar()
+solar_output = solar_panels * calculatesolar()
 wind_output = wind_turbines * calculatewind()
 tidal_output = tidal_power_plants * calculatetidal()
 
@@ -57,9 +58,9 @@ time_index = pd.date_range(start='2024-01-01', end='2024-12-01', freq='MS')
 
 household_load = pd.Series(data = household_load, index = time_index)
 
-tidal_solar = np.array(solar_output) + np.array(tidal_output)
+total_power_output = np.array(solar_output) + np.array(tidal_output) + np.array(wind_output)
 
-tidal_solar = pd.Series(data = tidal_solar, index = time_index)
+total_power_output = pd.Series(data = total_power_output, index = time_index)
 
 # Initialize variables
 net_power_flow = []
@@ -99,17 +100,19 @@ battery_soc = battery.capacity_kwh
 
 # Plotting the results
 plt.figure(figsize=(12, 6))
-plt.plot(solar_output, label="Solar Output (kWh)")
-plt.plot(wind_output, label="Wind Output (kWh)")
-plt.plot(tidal_output, label="Tidal Output (kWh)")
+plt.plot(solar_output, label="Solar output (kWh)")
+plt.plot(wind_output, label="Wind output (kWh)")
+plt.plot(tidal_output, label="Tidal output (kWh)")
 plt.plot(household_load, label = "Household load (kWh)")
-plt.plot(tidal_solar, label = "Solar + tidal(kWh)")
+plt.plot(total_power_output, label = "Total power output (kWh)")
 # plt.plot(house_consumption, label="House Consumption (kW)")
 # plt.plot(time_index, net_power_flow_series, label="Net Power Flow (kW)")
 # plt.plot(time_index, battery_state_of_charge_series, label="Battery SOC (kWh)")
 plt.xlabel("Time")
-plt.ylabel("Power (kW) / Battery SOC (kWh)")
-plt.title("Smart DC House Simulation with Custom Battery Model")
+plt.ylabel("Energy (kWh)")
+plt.xlim([solar_output.index.min(), solar_output.index.max()])
+plt.title("Smart DC House Simulation")
 plt.legend()
 plt.grid(True)
+plt.savefig("Janiskut.svg", format="svg")
 plt.show()
