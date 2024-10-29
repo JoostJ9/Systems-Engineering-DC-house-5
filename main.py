@@ -9,9 +9,9 @@ from tidal_power import calculatetidal
 import datetime
 
 apartments = 60
-solar_panels = 800
-tidal_power_plants = 1
-wind_turbines = 15
+solar_panels = 100
+tidal_power_plants = 0
+wind_turbines = 22
 
 # Define the custom battery class from above (SimpleBattery)
 class Battery:
@@ -102,7 +102,7 @@ battery_soc = battery.capacity_kwh
 plt.figure(figsize=(12, 6))
 plt.plot(solar_output, label="Solar output")
 plt.plot(wind_output, label="Wind output")
-plt.plot(tidal_output, label="Tidal output")
+#plt.plot(tidal_output, label="Tidal output")
 plt.plot(household_load, label = "Household load")
 plt.plot(total_power_output, label = "Total power output")
 # plt.plot(house_consumption, label="House Consumption (kW)")
@@ -114,5 +114,5 @@ plt.xlim([solar_output.index.min(), solar_output.index.max()])
 plt.title("Smart DC House Simulation")
 plt.legend()
 plt.grid(True)
-plt.savefig("Janiskut.svg", format="svg")
+plt.savefig("energy-outputs.svg", format="svg")
 plt.show()
