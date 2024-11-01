@@ -7,16 +7,16 @@ def calculatewind():
     """Function that returns the average wind turbine output using windpowerlib"""
 
     turbine_data = {
-    'turbine_type': 'Air 40',
-    'hub_height': 7,               # Hub height in meters
-    'rotor_diameter': 1.17,          # Rotor diameter in meters (approx.)
-    'rated_power': 400,             # Rated power in kW
-    'cut_in_wind_speed': 3.1,       # Cut-in wind speed in m/s
-    'rated_wind_speed': 11.0,       # Rated wind speed in m/s
-    'cut_out_wind_speed': 22.0,     # Cut-out wind speed in m/s
+    'turbine_type': 'E18',
+    'hub_height': 35,               # Hub height in meters
+    'rotor_diameter': 18.0,          # Rotor diameter in meters (approx.)
+    'rated_power': 80.0,             # Rated power in kW
+    'cut_in_wind_speed': 2.5,       # Cut-in wind speed in m/s
+    'rated_wind_speed': 12.0,       # Rated wind speed in m/s
+    'cut_out_wind_speed': 25.0,     # Cut-out wind speed in m/s
     'power_curve': pd.DataFrame(
-            data={'value': [0, 0, 1200, 1900, 2900, 4100],  # in kWh per month
-                  'wind_speed': [0.0, 3.1, 4.0, 5, 6, 6.60]})  # in m/s
+            data={'value':      [0,     0, 1200, 3700, 8100, 14400, 23500, 34090, 45300, 56600, 67400, 80000],  # in W
+                  'wind_speed': [0.0,   0,  3.0,  4.0,  5.0,   6.0,   7.0,   8.0,   9.0,  10.0, 11.0, 12.0]})  # in m/s
     }
    
     # Instantiate a WindTurbine object
@@ -55,7 +55,7 @@ def calculatewind():
     power_output_kw = modelchain.power_output
     
     # Assume each month has 30 days to calculate the energy in kWh
-    energy_output_kwh = power_output_kw  # kWh per month
+    energy_output_kwh = power_output_kw # kWh per month
     
     return energy_output_kwh
 

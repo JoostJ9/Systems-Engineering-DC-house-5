@@ -53,10 +53,6 @@ def calculatesolar():
     solar_output_series = pd.Series(solar_output_kwh, index=time_index)
 
     return solar_output_series
-    # # Calculate the solar output using pvwatts_dc()
-    # solar_pannel_output = solar_panel.pvwatts_dc(solar_irradiance, temp_cell)
-
-    # return solar_pannel_output
 
 solar_output = calculatesolar()
 
@@ -66,10 +62,6 @@ print(solar_output)
 # Plotting the results
 plt.figure(figsize=(12, 6))
 plt.plot(solar_output, label="Solar Output (Kilowatthour/month)")
-# plt.plot(time_index, wind_output, label="Wind Output (kW)")
-# plt.plot(time_index, house_consumption, label="House Consumption (kW)")
-# plt.plot(time_index, net_power_flow_series, label="Net Power Flow (kW)")
-# plt.plot(time_index, battery_state_of_charge_series, label="Battery SOC (kWh)")
 plt.xlabel("Time")
 plt.ylabel("Power (kWh)")
 plt.title("Smart DC House Simulation with Custom Battery Model")
